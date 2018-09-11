@@ -17,7 +17,7 @@ describe("decode", () => {
     expect(decode(queryString)).toEqual(queryObject);
   });
 
-  it("successfully decodes a simple nested object", () => {
+  it("successfully decodes a simple nested string", () => {
     const queryString = "?one[three]=one&two=two";
     const queryObject = {
       one: {
@@ -28,7 +28,7 @@ describe("decode", () => {
     expect(decode(queryString)).toEqual(queryObject);
   });
 
-  it("successfully decodes a deeply nested object", () => {
+  it("successfully decodes a deeply nested string", () => {
     const queryString = "?one[two][three]=one";
     const queryObject = {
       one: {
@@ -40,7 +40,7 @@ describe("decode", () => {
     expect(decode(queryString)).toEqual(queryObject);
   });
 
-  it("successfully encodes a deeply nested object with multiple values", () => {
+  it("successfully encodes a deeply nested string with multiple values", () => {
     const queryString =
       "?one[two][three]=three&one[two][four]=two&one[five]=one";
     const queryObject = {
@@ -55,7 +55,7 @@ describe("decode", () => {
     expect(decode(queryString)).toEqual(queryObject);
   });
 
-  it("successfully encodes a simple object with array value", () => {
+  it("successfully encodes a simple string with array value", () => {
     const queryString = "?one=three,four&two=two&three=one";
     const queryObject = {
       one: ["three", "four"],
@@ -65,7 +65,7 @@ describe("decode", () => {
     expect(decode(queryString)).toEqual(queryObject);
   });
 
-  it("successfully encodes a simple nested object with array value", () => {
+  it("successfully encodes a simple nested string with array value", () => {
     const queryString = "?one[three]=one,two&two=three";
     const queryObject = {
       one: {
@@ -76,7 +76,7 @@ describe("decode", () => {
     expect(decode(queryString)).toEqual(queryObject);
   });
 
-  it("successfully encodes a deeply nested object with array value", () => {
+  it("successfully encodes a deeply nested string with array value", () => {
     const queryString = "?one[two][three]=one,two";
     const queryObject = {
       one: {
