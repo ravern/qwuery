@@ -106,4 +106,10 @@ describe("decode", () => {
     const message = "Invalid query string";
     expect(() => decode(queryString)).toThrow(message);
   });
+
+  it("fails to decode a simple string without a equals sign", () => {
+    const queryString = "?one=three&two=two&threeone";
+    const message = "Invalid key value string found: threeone";
+    expect(() => decode(queryString)).toThrow(message);
+  });
 });

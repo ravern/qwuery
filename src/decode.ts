@@ -1,6 +1,7 @@
 import {
   IDecodeOptions,
   InvalidKeyStringError,
+  InvalidKeyValueStringError,
   InvalidQueryStringError,
   IQueryObject,
 } from "./types";
@@ -20,7 +21,11 @@ export const decode = (
 
   const keyValueStrings = queryString.slice(1).split("&");
   for (const keyValueString of keyValueStrings) {
-    const [keyString, valueString] = keyValueString.split("=");
+    const keyValueArray = keyValueString.split("=");
+    if (keyValueArray.length !== 2) {
+      throw new InvalidKeyValueStringError(keyValueString);
+    }
+    const [keyString, valueString] = keyValueArray;
 
     let keys = decodeKeyString(keyString);
     const lastKey = keys.slice(keys.length - 1)[0];
