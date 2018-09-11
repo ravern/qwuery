@@ -112,4 +112,14 @@ describe("decode", () => {
     const message = "Invalid key value string found: threeone";
     expect(() => decode(queryString)).toThrow(message);
   });
+
+  it("successfully decodes a simple string with a complex value", () => {
+    const queryString = "?one=four,%2Ccomplex%26&two=two&three=one";
+    const queryObject = {
+      one: ["four", ",complex&"],
+      two: "two",
+      three: "one",
+    };
+    expect(decode(queryString)).toEqual(queryObject);
+  });
 });

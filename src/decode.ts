@@ -35,6 +35,11 @@ export const decode = (
     if (!options.alwaysArrays && values.length === 1) {
       values = values[0];
     }
+    if (typeof values === "string") {
+      values = decodeURIComponent(values);
+    } else {
+      values = values.map(decodeURIComponent);
+    }
 
     let nestedQueryObject = queryObject;
     for (const key of keys) {
