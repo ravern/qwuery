@@ -1,6 +1,9 @@
-import { InvalidKeyStringError, IQueryObject } from "./types";
+import { IDecodeOptions, InvalidKeyStringError, IQueryObject } from "./types";
 
-export const decode = (queryString: string): IQueryObject => {
+export const decode = (
+  queryString: string,
+  options: IDecodeOptions = {},
+): IQueryObject => {
   if (queryString === "") {
     return {};
   }
@@ -16,7 +19,7 @@ export const decode = (queryString: string): IQueryObject => {
     keys = keys.slice(0, keys.length - 1);
 
     let values: string | string[] = valueString.split(",");
-    if (values.length === 1) {
+    if (!options.alwaysArrays && values.length === 1) {
       values = values[0];
     }
 

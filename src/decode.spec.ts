@@ -87,4 +87,17 @@ describe("decode", () => {
     };
     expect(decode(queryString)).toEqual(queryObject);
   });
+
+  it("successfully decodes a simple string with alwaysArrays option", () => {
+    const queryString = "?one=three&two=two&three=one";
+    const options = {
+      alwaysArrays: true,
+    };
+    const queryObject = {
+      one: ["three"],
+      two: ["two"],
+      three: ["one"],
+    };
+    expect(decode(queryString, options)).toEqual(queryObject);
+  });
 });
