@@ -54,4 +54,37 @@ describe("decode", () => {
     };
     expect(decode(queryString)).toEqual(queryObject);
   });
+
+  it("successfully encodes a simple object with array value", () => {
+    const queryString = "?one=three,four&two=two&three=one";
+    const queryObject = {
+      one: ["three", "four"],
+      two: "two",
+      three: "one",
+    };
+    expect(decode(queryString)).toEqual(queryObject);
+  });
+
+  it("successfully encodes a simple nested object with array value", () => {
+    const queryString = "?one[three]=one,two&two=three";
+    const queryObject = {
+      one: {
+        three: ["one", "two"],
+      },
+      two: "three",
+    };
+    expect(decode(queryString)).toEqual(queryObject);
+  });
+
+  it("successfully encodes a deeply nested object with array value", () => {
+    const queryString = "?one[two][three]=one,two";
+    const queryObject = {
+      one: {
+        two: {
+          three: ["one", "two"],
+        },
+      },
+    };
+    expect(decode(queryString)).toEqual(queryObject);
+  });
 });

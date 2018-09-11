@@ -9,11 +9,16 @@ export const decode = (queryString: string): IQueryObject => {
 
   const keyValueStrings = queryString.slice(1).split("&");
   for (const keyValueString of keyValueStrings) {
-    const [keyString, value] = keyValueString.split("=");
+    const [keyString, valueString] = keyValueString.split("=");
 
     let keys = decodeKeyString(keyString);
     const lastKey = keys.slice(keys.length - 1)[0];
     keys = keys.slice(0, keys.length - 1);
+
+    let values: string | string[] = valueString.split(",");
+    if (values.length === 1) {
+      values = values[0];
+    }
 
     let nestedQueryObject = queryObject;
     for (const key of keys) {
@@ -22,7 +27,7 @@ export const decode = (queryString: string): IQueryObject => {
       }
       nestedQueryObject = nestedQueryObject[key] as IQueryObject;
     }
-    nestedQueryObject[lastKey] = value;
+    nestedQueryObject[lastKey] = values;
   }
 
   return queryObject;
