@@ -5,20 +5,36 @@ export const encode = (queryObject: IQueryObject): string => {
     return "";
   }
 
-  const queryArray = [];
+  const queryArray: string[] = [];
+  encodeToArray(queryArray, [], queryObject);
+  return `?${queryArray.join("&")}`;
+};
 
+const encodeToArray = (
+  queryArray: string[],
+  parentKeys: string[],
+  queryObject: IQueryObject,
+) => {
   for (const key in queryObject) {
+    const keys = [...parentKeys, key];
     const value = queryObject[key];
 
     if (typeof value === "string") {
-      queryArray.push(`${key}=${value}`);
+      const keysString = createKeysString(keys);
+      queryArray.push(`${keysString}=${value}`);
     } else {
-      for (const nestedKey in value) {
-        const nestedValue = value[nestedKey];
-        queryArray.push(`${key}[${nestedKey}]=${nestedValue}`);
-      }
+      encodeToArray(queryArray, [...parentKeys, key], value);
     }
   }
+};
 
-  return `?${queryArray.join("&")}`;
+const createKeysString = (keys: string[]): string => {
+  return keys
+    .map((key, i) => {
+      if (i === 0) {
+        return key;
+      }
+      return `[${key}]`;
+    })
+    .join("");
 };
