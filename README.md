@@ -1,5 +1,7 @@
 # qwuery
 
+[![TravisCI](https://travis-ci.org/ravernkoh/qwuery.svg?branch=master)](https://travis-ci.org/ravernkoh/qwuery)
+
 Flexible query string parser with support for nesting.
 
 ## Installation
