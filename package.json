@@ -1,0 +1,49 @@
+{
+  "name": "qwuery",
+  "version": "0.0.1",
+  "description": "Flexible query string parser with support for nesting",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint -c tslint.json 'src/**/*.ts{,x}'",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ravernkoh/qwuery.git"
+  },
+  "keywords": [
+    "query",
+    "string",
+    "parser",
+    "flexible",
+    "nested"
+  ],
+  "author": "Ravern Koh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ravernkoh/qwuery/issues"
+  },
+  "homepage": "https://github.com/ravernkoh/qwuery#readme",
+  "devDependencies": {
+    "@types/jest": "^23.3.2",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.1.4",
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.3"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+}
