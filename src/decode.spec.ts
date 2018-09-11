@@ -16,4 +16,15 @@ describe("decode", () => {
     };
     expect(decode(queryString)).toEqual(queryObject);
   });
+
+  it("successfully encodes a simple nested object", () => {
+    const queryString = "?one[three]=one&two=two";
+    const queryObject = {
+      one: {
+        three: "one",
+      },
+      two: "two",
+    };
+    expect(decode(queryString)).toEqual(queryObject);
+  });
 });
