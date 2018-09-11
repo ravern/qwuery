@@ -1,7 +1,16 @@
-export const encode = (query: object): string => {
-  // If the object is empty, immediately return an empty string.
-  if (Object.keys(query).length === 0) {
+export interface IQueryObject {
+  [key: string]: string;
+}
+
+export const encode = (queryObject: IQueryObject): string => {
+  if (Object.keys(queryObject).length === 0) {
     return "";
   }
-  return "";
+
+  const queryArray = [];
+  for (const key in queryObject) {
+    const value = queryObject[key];
+    queryArray.push(`${key}=${value}`);
+  }
+  return `?${queryArray.join("&")}`;
 };
