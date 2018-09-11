@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "lint": "tslint -c tslint.json 'src/**/*.ts{,x}'",
-    "test": "jest"
+    "test": "jest",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
