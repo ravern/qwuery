@@ -17,13 +17,40 @@ describe("decode", () => {
     expect(decode(queryString)).toEqual(queryObject);
   });
 
-  it("successfully encodes a simple nested object", () => {
+  it("successfully decodes a simple nested object", () => {
     const queryString = "?one[three]=one&two=two";
     const queryObject = {
       one: {
         three: "one",
       },
       two: "two",
+    };
+    expect(decode(queryString)).toEqual(queryObject);
+  });
+
+  it("successfully decodes a deeply nested object", () => {
+    const queryString = "?one[two][three]=one";
+    const queryObject = {
+      one: {
+        two: {
+          three: "one",
+        },
+      },
+    };
+    expect(decode(queryString)).toEqual(queryObject);
+  });
+
+  it("successfully encodes a deeply nested object with multiple values", () => {
+    const queryString =
+      "?one[two][three]=three&one[two][four]=two&one[five]=one";
+    const queryObject = {
+      one: {
+        two: {
+          three: "three",
+          four: "two",
+        },
+        five: "one",
+      },
     };
     expect(decode(queryString)).toEqual(queryObject);
   });
