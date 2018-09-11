@@ -87,4 +87,14 @@ describe("encode", () => {
     const queryString = "?one[two][three]=one,two";
     expect(encode(queryObject)).toEqual(queryString);
   });
+
+  it("successfully encodes a simple object with a complex value", () => {
+    const queryObject = {
+      one: ["four", ",complex&"],
+      two: "two",
+      three: "one",
+    };
+    const queryString = "?one=four,%2Ccomplex%26&two=two&three=one";
+    expect(encode(queryObject)).toEqual(queryString);
+  });
 });

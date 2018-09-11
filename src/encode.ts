@@ -28,7 +28,7 @@ const encodeToArray = (
 
     if (values instanceof Array) {
       const keysString = createKeysString(keys);
-      const valuesString = values.join(",");
+      const valuesString = values.map(encodeURIComponent).join(",");
       queryArray.push(`${keysString}=${valuesString}`);
     } else {
       encodeToArray(queryArray, [...parentKeys, key], values);
