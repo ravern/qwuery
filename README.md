@@ -1,4 +1,4 @@
-# qweury
+# qwuery
 
 Flexible query string parser with support for nesting.
 

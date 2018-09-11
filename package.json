@@ -1,6 +1,6 @@
 {
   "name": "qwuery",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Flexible query string parser with support for nesting",
   "main": "dist/index.js",
   "scripts": {
