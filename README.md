@@ -6,7 +6,7 @@ Flexible query string parser with support for nesting.
 
 ```bash
 # Install through NPM
-$ npm install --save qweury
+$ npm install --save qwuery
 ```
 
 ## Usage
