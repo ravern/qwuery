@@ -1,4 +1,9 @@
-import { IDecodeOptions, InvalidKeyStringError, IQueryObject } from "./types";
+import {
+  IDecodeOptions,
+  InvalidKeyStringError,
+  InvalidQueryStringError,
+  IQueryObject,
+} from "./types";
 
 export const decode = (
   queryString: string,
@@ -6,6 +11,9 @@ export const decode = (
 ): IQueryObject => {
   if (queryString === "") {
     return {};
+  }
+  if (queryString.charAt(0) !== "?") {
+    throw new InvalidQueryStringError();
   }
 
   const queryObject: IQueryObject = {};

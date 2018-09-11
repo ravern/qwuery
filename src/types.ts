@@ -11,3 +11,9 @@ export class InvalidKeyStringError extends Error {
     super(`Invalid key string found: ${keyString}`);
   }
 }
+
+export class InvalidQueryStringError extends Error {
+  constructor() {
+    super("Invalid query string");
+  }
+}

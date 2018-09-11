@@ -100,4 +100,10 @@ describe("decode", () => {
     };
     expect(decode(queryString, options)).toEqual(queryObject);
   });
+
+  it("fails to decode a simple string without a question mark", () => {
+    const queryString = "one=three&two=two&three=one";
+    const message = "Invalid query string";
+    expect(() => decode(queryString)).toThrow(message);
+  });
 });
