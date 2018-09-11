@@ -19,11 +19,19 @@ const encodeToArray = (
     const keys = [...parentKeys, key];
     const value = queryObject[key];
 
+    let values: string[] | IQueryObject;
     if (typeof value === "string") {
-      const keysString = createKeysString(keys);
-      queryArray.push(`${keysString}=${value}`);
+      values = [value];
     } else {
-      encodeToArray(queryArray, [...parentKeys, key], value);
+      values = value;
+    }
+
+    if (values instanceof Array) {
+      const keysString = createKeysString(keys);
+      const valuesString = values.join(",");
+      queryArray.push(`${keysString}=${valuesString}`);
+    } else {
+      encodeToArray(queryArray, [...parentKeys, key], values);
     }
   }
 };

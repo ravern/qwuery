@@ -54,4 +54,14 @@ describe("encode", () => {
       "?one[two][three]=three&one[two][four]=two&one[five]=one";
     expect(encode(queryObject)).toEqual(queryString);
   });
+
+  it("successfully encodes a simple object with array value", () => {
+    const queryObject = {
+      one: ["three", "four"],
+      two: "two",
+      three: "one",
+    };
+    const queryString = "?one=three,four&two=two&three=one";
+    expect(encode(queryObject)).toEqual(queryString);
+  });
 });
