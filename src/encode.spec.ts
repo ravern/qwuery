@@ -39,4 +39,19 @@ describe("encode", () => {
     const queryString = "?one[two][three]=one";
     expect(encode(queryObject)).toEqual(queryString);
   });
+
+  it("successfully encodes a deeply nested object with multiple values", () => {
+    const queryObject = {
+      one: {
+        two: {
+          three: "three",
+          four: "two",
+        },
+        five: "one",
+      },
+    };
+    const queryString =
+      "?one[two][three]=three&one[two][four]=two&one[five]=one";
+    expect(encode(queryObject)).toEqual(queryString);
+  });
 });
